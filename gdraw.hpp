@@ -4,16 +4,16 @@
 #include "widget.hpp"
 #include "graphics.hpp"
 
-squares : public Widget
+class gdraw : public Widget
 {
 protected:
 
 public:
     gdraw(int x, int y, int sx, int sy);
     void draw();
-    void handle();
-    int counter();
-}
+    void handle(genv::event ev);
+    int counter;
+};
 
 
 #endif // SQUARES_HPP_INCLUDED
