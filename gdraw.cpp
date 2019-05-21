@@ -6,26 +6,63 @@
 
 gdraw::gdraw(int x, int y, int sx, int sy)
 {
-this-> x = x;
-this-> y = y;
-this-> sx = sx;
-this-> sy = sy;
-this-> counter = 0;
+    this-> x = x;
+    this-> y = y;
+    this-> sx = sx;
+    this-> sy = sy;
+    this-> counter = 0;
+    this->c = c;
 }
+
 
 void gdraw::draw()
 {
-    for (int i = 0; i<15; i++)
+    for (int j = 0; j<15; j++)
     {
-        gout << move_to(x+i*5,y) << color(255,255,255) << box(sx,sy);
-        gout << move_to(x+i*5,y+i*5) << color (0,0,0) << box(sx-10,sy-10);
+        for (int i = 0; i<15; i++)
+        {
+            gout << move_to(x+i*35,y+j*35) << color(255,255,255) << box(sx,sy);
+            gout << move_to(x+i*35+5,y+j*35+5) << color (0,0,0) << box(sx-10,sy-10);
+            for (int k = 0; k<c.size(); k++)
+            {
+                if (c[k].checked == true)
+                {
+                    gout<< move_to(c[k].cx,c[k].cy) << color(255,255,255) << line_to(c[k].cx+30,c[k].cy+30);
+                    gout<< move_to(c[k].cx+30,c[k].cy) << line_to(c[k].cx,c[k].cy+30);
+                }
+                else
+                {
+                    gout << move_to(c[k].cx+5,c[k].cy+5) << color (0,0,0) << box(sx-10,sy-10);
+                }
+            }
+
+        }
     }
-
-
 }
 
 void gdraw::handle(event ev)
-
 {
+    for (int j = 0; j<15; j++)
+    {
+        for (int i = 0; i<15; i++)
+        {
+            if (ev.pos_x>x+i*35 && ev.pos_x<x+i*35+30 && ev.pos_y>y+j*35 && ev.pos_y<y+j*35+30 && ev.button == btn_left)
+            {
+                checked tmp;
+                tmp.cx = x+i*35;
+                tmp.cy = y+j*35;
+                tmp.checked = true;
+                c.push_back(tmp);
 
+
+            }
+        }
+    }
+    /*for (int k = 1; k<c.size(); k++)
+                {
+                    if(ev.pos_x>c[k].cx && ev.pos_x<c[k].cx+30 && ev.pos_y>c[k].cy && ev.pos_y<c[k].cy+30 && ev.button == btn_left)
+                    {
+                        c.erase(c.begin()+k);
+                    }
+                }*/
 }
