@@ -11,13 +11,14 @@ struct checked
     {
     int cx, cy;
     bool checked;
+    bool o;
     };
 public:
     gdraw(int x, int y, int sx, int sy);
     void draw();
     void handle(genv::event ev);
     int counter;
-    std::vector<checked>c;
+    std::vector<checked> c;
 };
 
 
