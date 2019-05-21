@@ -5,6 +5,7 @@
 #include "vector"
 #include "list.hpp"
 #include "gdraw.hpp"
+#include "comp.hpp"
 
 using namespace genv;
 using namespace std;

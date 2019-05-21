@@ -56,6 +56,7 @@ void gdraw::handle(event ev)
                 if (counter%2 != 0)
                 {
                     checked tmp;
+
                     tmp.cx = x+i*35;
                     tmp.cy = y+j*35;
                     tmp.checked = true;
@@ -71,9 +72,20 @@ void gdraw::handle(event ev)
                     tmp.o=true;
                     c.push_back(tmp);
                 }
+                /*for (int k = 0; k<c.size(); k++)
+                {
+                    if(c[k].cx == x+i*35 && c[k].cy == y+j*35 && c[k].checked == true )
+                    {
+                        c[k].checked = false;
+                    }
+                    else
+                    {
 
+                    }
+                }*/
 
             }
         }
     }
+
 }
